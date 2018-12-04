@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{physics}
+
+\begin{document}
+The Robin condition
+\begin{equation*}
+\hat{n}\cdot\left(\vec{a}\phi + b\nabla\phi\right) = g\qquad\text{on $f=f_0$}
+\end{equation*} 
+
+can often be substituted for the flux in an equation
+
+\begin{equation*}
+\begin{aligned}
+     \frac{\partial\phi}{\partial t}
+     &= \nabla\cdot\left(\vec{a}\phi\right) + \nabla\cdot\left(b\nabla\phi\right)
+     \\
+     \int_V\frac{\partial\phi}{\partial t}\,dV
+     &= \int_S \hat{n} \cdot \left(\vec{a}\phi + b\nabla\phi\right) \, dS
+     \\
+     \int_V\frac{\partial\phi}{\partial t}\,dV
+     &= \int_{S\neq f_0} \hat{n} \cdot \left(\vec{a}\phi + b\nabla\phi\right) \, dS
+     + \int_{f_0} g \, dS
+\end{aligned}
+\end{equation*} 
+
+\begin{verbatim}
+ >>> convectionCoeff = FaceVariable(mesh=mesh, value=[a])
+>>> convectionCoeff.setValue(0., where=mask)
+>>> diffusionCoeff = FaceVariable(mesh=mesh, value=b)
+>>> diffusionCoeff.setValue(0., where=mask)
+>>> eqn = (TransientTerm() == PowerLawConvectionTerm(coeff=convectionCoeff)
+>>>        + DiffusionTerm(coeff=diffusionCoeff) + (g * mask).divergence)
+\end{verbatim} 
+
+When the Robin condition does not exactly map onto the boundary flux, we can attempt to apply it term by term by taking note of the discretization of the :class:`~fipy.terms.diffusionTerm.DiffusionTerm`:
+
+\begin{equation*}
+\begin{aligned}
+    \nabla\cdot\left(\Gamma\nabla\phi\right) &\approx
+    \sum_f \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f \\
+    &= \sum_{f\neq f_0} \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f
+    + \Gamma_{f_0} \left(\hat{n}\cdot\nabla\phi\right)_{f_0} A_{f_0}
+\end{aligned}
+\end{equation*} 
+
+\end{document}

@@ -94,8 +94,8 @@ logging.info('Biot number is %.2E' % Bi)
 T_infinity=1.
 
 #convection boundary condition
-#var.faceGrad.constrain([-convectionCoeff/k*(var.faceValue-T_infinity)]*mesh.faceNormals,where=surfaceFaces)
-var.faceGrad.constrain([Bi*(1.-var.faceValue)]*mesh.faceNormals,where=surfaceFaces)
+#var.faceGrad.constrain((-convectionCoeff/k*(var.faceValue-T_infinity))*mesh.faceNormals,where=surfaceFaces)
+var.faceGrad.constrain((Bi*(1.-var.faceValue))*mesh.faceNormals,where=surfaceFaces)
 
 #either show the fipy viewer or make a T(s,t) plot; doing both at once is too much of a hassle to debug
 showViewer=False  #SETTING
