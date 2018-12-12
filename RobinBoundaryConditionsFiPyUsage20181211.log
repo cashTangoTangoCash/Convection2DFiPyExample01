@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/TeX Live for SUSE Linux) (preloaded format=pdflatex 2018.11.2)  11 DEC 2018 19:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/TeX Live for SUSE Linux) (preloaded format=pdflatex 2018.11.2)  11 DEC 2018 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**RobinBoundaryConditionsFiPyUsage.tex
-(./RobinBoundaryConditionsFiPyUsage.tex
+**RobinBoundaryConditionsFiPyUsage20181211.tex
+(./RobinBoundaryConditionsFiPyUsage20181211.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 50 language(s) loaded.
 (/usr/share/texmf/tex/latex/base/article.cls
@@ -1121,8 +1121,8 @@ Package: xparse 2017/05/29 L3 Experimental document command parser
 . Defining command \homework with sig. '' on line 764.
 .................................................
 )
-(./RobinBoundaryConditionsFiPyUsage.aux)
-\openout1 = `RobinBoundaryConditionsFiPyUsage.aux'.
+(./RobinBoundaryConditionsFiPyUsage20181211.aux)
+\openout1 = `RobinBoundaryConditionsFiPyUsage20181211.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -1137,61 +1137,62 @@ LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 
-Overfull \hbox (211.49515pt too wide) in paragraph at lines 10--10
-[] \OT1/cmtt/m/n/10 https://github.com/usnistgov/fipy/blob/develop/documentatio
-n/USAGE.rst#applying-robin-boundary-conditions[] 
+Overfull \hbox (195.74529pt too wide) in paragraph at lines 11--11
+[]\OT1/cmtt/m/n/10 https://github.com/usnistgov/fipy/blob/70b72b7abb267c85ada47
+886b8b3573e1819fffc/documentation/USAGE.rst[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 40--40
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 42--42
 []\OT1/cmtt/m/n/10 >>> eqn = (TransientTerm() == PowerLawConvectionTerm(coeff=c
 onvectionCoeff)[] 
- []
-
-
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 40--40
-[]\OT1/cmtt/m/n/10 >>>        + DiffusionTerm(coeff=diffusionCoeff) + (g * mask
-).divergence)[] 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (164.24556pt too wide) in paragraph at lines 114--114
-[]\OT1/cmtt/m/n/10 >>> dPf = FaceVariable(mesh=mesh, value=mesh._faceToCellDist
-anceRatio * mesh.cellDistanceVectors)[] 
+Overfull \hbox (106.49606pt too wide) in paragraph at lines 88--88
+[]\OT1/cmtt/m/n/10 ...                    value=mesh._faceToCellDistanceRatio *
+ mesh.cellDistanceVectors)[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 114--114
-[]\OT1/cmtt/m/n/10 >>> RobinCoeff = (mask * Gamma0 * Af / (dPf.dot(a) + b)).div
-ergence[] 
+Overfull \hbox (106.49606pt too wide) in paragraph at lines 88--88
+[]\OT1/cmtt/m/n/10 >>> RobinCoeff = (mask * Gamma0 * Af * mesh.faceNormals / (d
+Pf.dot(a) + b)).divergence[] 
  []
 
 
-Overfull \hbox (143.24574pt too wide) in paragraph at lines 114--114
-[]\OT1/cmtt/m/n/10 ...        + RobinCoeff * g - ImplicitSourceTerm(coeff=Robin
-Coeff * mesh.faceNormals.dot(a)))[] 
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 88--88
+[]\OT1/cmtt/m/n/10 >>> eqn = (TransientTerm() == DiffusionTerm(coeff=Gamma) + R
+obinCoeff * g[] 
  []
 
-[2] (./RobinBoundaryConditionsFiPyUsage.aux) ) 
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 88--88
+[]\OT1/cmtt/m/n/10 ...        - ImplicitSourceTerm(coeff=RobinCoeff * mesh.face
+Normals.dot(a)))[] 
+ []
+
+[2] (./RobinBoundaryConditionsFiPyUsage20181211.aux) ) 
 Here is how much of TeX's memory you used:
  9330 strings out of 494035
- 179829 string characters out of 6158521
- 218670 words of memory out of 5000000
+ 179901 string characters out of 6158521
+ 217678 words of memory out of 5000000
  12763 multiletter control sequences out of 15000+600000
  530894 words of font info for 25 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 39i,10n,38p,10408b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/
-texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/type1/pu
-blic/amsfonts/cm/cmr5.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7
-.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
-xmf/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb>
-Output written on RobinBoundaryConditionsFiPyUsage.pdf (2 pages, 95685 bytes).
+ 39i,10n,38p,10416b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
+r/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/
+type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texmf/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/ty
+pe1/public/amsfonts/cm/cmtt10.pfb>
+Output written on RobinBoundaryConditionsFiPyUsage20181211.pdf (2 pages, 98795 
+bytes).
 PDF statistics:
  47 PDF objects out of 1000 (max. 8388607)
  33 compressed objects within 1 object stream
