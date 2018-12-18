@@ -1,18 +1,19 @@
-2018-12-12 12:43:32,569 - INFO - convection coefficient is 5.96E+08
-2018-12-12 12:43:32,569 - INFO - Biot number is 1.00E+01
-2018-12-12 12:43:32,607 - INFO - dt over explicit limit dt is 9.00E-01
-2018-12-12 12:43:32,607 - INFO - total number of steps is 1777 and plotEvery is 253
-2018-12-12 12:43:36,632 - INFO - step is 253; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:36,904 - INFO - step is 253; min T along ray analytical solution is 3.75E+02, max T along ray analytical solution is 3.09E+02
-2018-12-12 12:43:40,556 - INFO - step is 506; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:40,764 - INFO - step is 506; min T along ray analytical solution is 3.31E+02, max T along ray analytical solution is 3.00E+02
-2018-12-12 12:43:44,388 - INFO - step is 759; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:44,584 - INFO - step is 759; min T along ray analytical solution is 3.11E+02, max T along ray analytical solution is 2.96E+02
-2018-12-12 12:43:48,151 - INFO - step is 1012; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:48,322 - INFO - step is 1012; min T along ray analytical solution is 3.01E+02, max T along ray analytical solution is 2.95E+02
-2018-12-12 12:43:51,846 - INFO - step is 1265; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:52,011 - INFO - step is 1265; min T along ray analytical solution is 2.97E+02, max T along ray analytical solution is 2.94E+02
-2018-12-12 12:43:55,445 - INFO - step is 1518; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:55,589 - INFO - step is 1518; min T along ray analytical solution is 2.95E+02, max T along ray analytical solution is 2.93E+02
-2018-12-12 12:43:59,026 - INFO - step is 1771; min T along ray is 4.25E+02, max T along ray is 4.25E+02, var.value.min() is 4.25E+02, var.value.max() is 4.25E+02
-2018-12-12 12:43:59,170 - INFO - step is 1771; min T along ray analytical solution is 2.94E+02, max T along ray analytical solution is 2.93E+02
+2018-12-16 19:58:47,862 - INFO - using first mesh
+2018-12-16 19:58:47,992 - INFO - convection coefficient is 5.96E+08
+2018-12-16 19:58:47,992 - INFO - Biot number is 1.00E+01
+2018-12-16 19:58:48,030 - INFO - dt over explicit limit dt is 9.00E-01
+2018-12-16 19:58:48,030 - INFO - total number of steps is 1777 and plotEvery is 253
+2018-12-16 19:58:51,840 - INFO - step is 253; min T along ray is 3.03E+02, max T along ray is 3.70E+02, var.value.min() is 3.00E+02, var.value.max() is 3.72E+02
+2018-12-16 19:58:52,080 - INFO - step is 253; min T along ray analytical solution is 3.09E+02, max T along ray analytical solution is 3.75E+02
+2018-12-16 19:58:55,563 - INFO - step is 506; min T along ray is 2.98E+02, max T along ray is 3.27E+02, var.value.min() is 2.96E+02, var.value.max() is 3.27E+02
+2018-12-16 19:58:55,741 - INFO - step is 506; min T along ray analytical solution is 3.00E+02, max T along ray analytical solution is 3.31E+02
+2018-12-16 19:58:59,207 - INFO - step is 759; min T along ray is 2.95E+02, max T along ray is 3.08E+02, var.value.min() is 2.94E+02, var.value.max() is 3.08E+02
+2018-12-16 19:58:59,385 - INFO - step is 759; min T along ray analytical solution is 2.96E+02, max T along ray analytical solution is 3.11E+02
+2018-12-16 19:59:02,854 - INFO - step is 1012; min T along ray is 2.94E+02, max T along ray is 3.00E+02, var.value.min() is 2.94E+02, var.value.max() is 3.00E+02
+2018-12-16 19:59:03,017 - INFO - step is 1012; min T along ray analytical solution is 2.95E+02, max T along ray analytical solution is 3.01E+02
+2018-12-16 19:59:06,496 - INFO - step is 1265; min T along ray is 2.94E+02, max T along ray is 2.96E+02, var.value.min() is 2.93E+02, var.value.max() is 2.96E+02
+2018-12-16 19:59:06,662 - INFO - step is 1265; min T along ray analytical solution is 2.94E+02, max T along ray analytical solution is 2.97E+02
+2018-12-16 19:59:10,094 - INFO - step is 1518; min T along ray is 2.93E+02, max T along ray is 2.94E+02, var.value.min() is 2.93E+02, var.value.max() is 2.94E+02
+2018-12-16 19:59:10,237 - INFO - step is 1518; min T along ray analytical solution is 2.93E+02, max T along ray analytical solution is 2.95E+02
+2018-12-16 19:59:13,658 - INFO - step is 1771; min T along ray is 2.93E+02, max T along ray is 2.94E+02, var.value.min() is 2.93E+02, var.value.max() is 2.94E+02
+2018-12-16 19:59:13,801 - INFO - step is 1771; min T along ray analytical solution is 2.93E+02, max T along ray analytical solution is 2.94E+02

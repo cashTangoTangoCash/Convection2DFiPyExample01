@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{physics}
+
+\begin{document}
+The following is roughly copied from
+\begin{verbatim}
+https://github.com/usnistgov/fipy/blob/dd3420fb71884d74850051ad2280bff525301824/documentation/USAGE.rst
+\end{verbatim} 
+
+The Robin condition applied on the portion of the boundary
+\begin{verbatim}
+S_R							  
+\end{verbatim}
+
+\begin{equation*}
+\hat{n}\cdot\left(\vec{a}\phi + b\nabla\phi\right) = g\qquad\text{on $S_R$}
+\end{equation*} 
+
+can often be substituted for the flux in an equation
+
+\begin{equation*}
+\begin{aligned}
+\frac{\partial\phi}{\partial t}
+&= \nabla\cdot\left(\vec{a}\phi\right) + \nabla\cdot\left(b\nabla\phi\right)
+\\
+\int_V\frac{\partial\phi}{\partial t}\,dV
+&= \int_S \hat{n} \cdot \left(\vec{a}\phi + b\nabla\phi\right) \, dS
+\\
+\int_V\frac{\partial\phi}{\partial t}\,dV
+&= \int_{S \notin S_R} \hat{n} \cdot \left(\vec{a}\phi + b\nabla\phi\right) \, dS
++ \int_{S \in S_R} g \, dS
+\end{aligned}
+\end{equation*} 
+
+At faces identifed by mask,
+
+\begin{verbatim}
+>>> a = FaceVariable(mesh=mesh, value=..., rank=1)
+>>> a.setValue(0., where=mask)
+>>> b = FaceVariable(mesh=mesh, value=..., rank=0)
+>>> b.setValue(0., where=mask)
+>>> g = FaceVariable(mesh=mesh, value=..., rank=0)
+>>> eqn = (TransientTerm() == PowerLawConvectionTerm(coeff=a)
+...        + DiffusionTerm(coeff=b)
+...        + (g * mask * mesh.faceNormals).divergence)
+\end{verbatim} 
+
+When the Robin condition does not exactly map onto the boundary flux, we can attempt to apply it term by term. The Robin condition relates the gradient at a boundary face to the value on that face, however :term:`FiPy` naturally calculates variable values at cell centers and gradients at intervening faces. Using a first order upwind approximation, the boundary value of the variable can be put in terms of the neighboring cell value and the normal gradient at the boundary:
+
+where
+\begin{equation*}
+\vec{d}_{fP}
+\end{equation*}
+is the distance vector from the face center to the adjoining cell center. The approximation 
+\begin{equation*}
+\left(\vec{d}_{fP}\cdot\nabla\phi\right)_f \approx \left(\hat{n}\cdot\nabla\phi\right)_f\left(\vec{d}_{fP}\cdot\hat{n}\right)_f
+\end{equation*} 
+is most valid when the mesh is orthogonal.
+
+Substituting this expression into the Robin condition:
+
+we obtain an expression for the gradient at the boundary face in terms of its neighboring cell. We can, in turn, substitute this back into upwind equation
+to obtain the value on the bounary face in terms of the neighboring cell.
+Substituting robin facegrad into the discretization of the class fipy DiffusionTerm:
+
+\begin{equation*}
+\begin{aligned}
+\int_V \nabla\cdot\left(\Gamma\nabla\phi\right) dV
+&= \int_S \Gamma \hat{n}\cdot\nabla\phi\, S \\
+&\approx \sum_f \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f \\
+&= \sum_{f \notin S_R} \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f
++ \sum_{f \in S_R} \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f \\
+&\approx \sum_{f \notin S_R} \Gamma_f \left(\hat{n}\cdot\nabla\phi\right)_f A_f
++ \sum_{f \in S_R} \Gamma_f \frac{g_f - \left(\hat{n}\cdot\vec{a}\right)_f \phi_P}
+                    {-\left(\vec{d}_{fP}\cdot\vec{a}\right)_f + b_f} A_f
+\end{aligned}
+\end{equation*} 
+
+An equation of the form
+\begin{verbatim}
+>>> eqn = TransientTerm() == DiffusionTerm(coeff=Gamma0)
+\end{verbatim} 
+can be constrained to have a Robin condition at faces identifed by mask by making the following modifications
+\begin{verbatim}
+>>> Gamma = FaceVariable(mesh=mesh, value=Gamma0)
+>>> Gamma.setValue(0., where=mask)
+>>> dPf = FaceVariable(mesh=mesh,
+...                    value=mesh._faceToCellDistanceRatio * mesh.cellDistanceVectors)
+>>> n = mesh.faceNormals
+>>> a = FaceVariable(mesh=mesh, value=..., rank=1)
+>>> b = FaceVariable(mesh=mesh, value=..., rank=0)
+>>> g = FaceVariable(mesh=mesh, value=..., rank=0)
+>>> RobinCoeff = (mask * Gamma0 * n / (-dPf.dot(a) + b)
+>>> eqn = (TransientTerm() == DiffusionTerm(coeff=Gamma) + (RobinCoeff * g).divergence
+...        - ImplicitSourceTerm(coeff=(RobinCoeff * n.dot(a)).divergence)
+\end{verbatim} 
+
+Similarly, for a fipy ConvectionTerm, we can substitute upwind2:
+\begin{equation*}
+\begin{aligned}
+\int_V \nabla\cdot\left(\vec{u}\phi\right) dV
+&= \int_S \hat{n}\cdot\vec{u} \phi\,dS \\
+&\approx \sum_f \left(\hat{n}\cdot\vec{u}\right)_f \phi_f A_f \\
+&= \sum_{f \notin S_R} \left(\hat{n}\cdot\vec{u}\right)_f \phi_f A_f
++ \sum_{f \in S_R} \left(\hat{n}\cdot\vec{u}\right)_f
+     \frac{-g_f \left(\hat{n}\cdot\vec{d}_{fP}\right)_f + b_f\phi_P}
+          {- \left(\vec{d}_{fP}\cdot\vec{a}\right)_f + b_f} A_f
+\end{aligned}
+\end{equation*}
+
+Note
+
+An expression like the heat flux convection boundary condition
+\begin{equation*}
+-k\nabla T\cdot\hat{n} = h(T - T_\infty)
+\end{equation*}
+can be put in the form of the Robin condition used above by letting
+\begin{equation*}
+\vec{a} \equiv h \hat{n}
+\end{equation*}
+\begin{equation*}
+b \equiv k
+\end{equation*}
+\begin{equation*}
+g \equiv h T_\infty
+\end{equation*}
+
+\end{document}
